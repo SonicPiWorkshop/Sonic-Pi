@@ -1,9 +1,7 @@
 rest = 0.7
+sound = :piano
 
 define :part_1 do
-  
-  use_synth :piano
-  
   play [:D3, :Fs4, :E5]
   sleep 0.25 * rest
   play [:D3, :Fs4, :E5]
@@ -179,12 +177,20 @@ define :part_3 do
   sleep 0.5 * rest
 end
 
+define :change_synth do
+  use_synth sound
+end
+
 live_loop :Super_Mario_Bros do
+  
+  change_synth
   part_1
   
   2.times do
+    change_synth
     part_2
   end
   
+  change_synth
   part_3
 end
